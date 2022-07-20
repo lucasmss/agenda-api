@@ -7,7 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "contatos_tb")
+@Table(name = "contato")
 @Getter@Setter
 @NoArgsConstructor
 public class Contato {
@@ -15,7 +15,10 @@ public class Contato {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column
     private String nome;
+    @Column
     private String email;
+    @Column
     private boolean favorito;
 }
