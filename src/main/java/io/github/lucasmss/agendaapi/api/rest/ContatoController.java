@@ -18,13 +18,13 @@ public class ContatoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Contato save ( @RequestBody Contato contato){
+    public Contato save ( @RequestBody Contato contato ){
         return repository.save(contato);
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete (@PathVariable Integer id){
+    public void delete ( @PathVariable Integer id ){
         repository.deleteById(id);
     }
 
@@ -34,10 +34,11 @@ public class ContatoController {
     }
 
     @PatchMapping("{id}/favorito")
-    public void favorite(@PathVariable Integer id, @RequestBody Boolean favorito){
+    public void favorite( @PathVariable Integer id ){
         Optional<Contato> contato = repository.findById(id);
         contato.ifPresent(c -> {
-            c.setFavorito(favorito);
+            boolean favorito = c.isFavorito() == Boolean.TRUE;
+            c.setFavorito(!favorito);
             repository.save(c);
         });
     }
