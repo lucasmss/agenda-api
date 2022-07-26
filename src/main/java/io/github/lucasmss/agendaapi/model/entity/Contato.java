@@ -21,4 +21,7 @@ public class Contato {
     private String email;
     @Column
     private boolean favorito;
+    @Column
+    @Lob
+    private byte[] foto;
 }
